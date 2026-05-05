@@ -1,0 +1,30 @@
+{
+  "build": {
+    "core": "MiniCore",
+    "extra_flags": "-DARDUINO_AVR_ATmega328P",
+    "f_cpu": "16000000L",
+    "mcu": "atmega328p",
+    "variant": "standard"
+  },
+  "bootloader": {
+    "led_pin": "B5",
+    "uart0_pins": "uart0_rxd0_txd1"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "ATmega328P Xplained Mini",
+  "upload": {
+    "maximum_ram_size": 2048,
+    "maximum_size": 32768,
+    "protocol": "xplainedmini_isp",
+    "require_upload_port": false,
+    "extra_flags": [
+      "-P",
+      "usb",
+      "-e"
+    ]
+  },
+  "url": "https://www.microchip.com/en-us/development-tool/ATmega328P-XMINI",
+  "vendor": "Microchip"
+}
