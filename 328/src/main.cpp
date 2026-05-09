@@ -3,9 +3,11 @@
 #include <util/delay.h>
 
 #include "Arduino.h"
+#include "buttons.h"
 #include "dht11.h"
 #include "hx1838.h"
 #include "lcd_display.h"
+#include "led.h"
 #include "usart.h"
 
 #define DHT11_MAX_MESSAGE_LEN 64
@@ -36,6 +38,12 @@ void init_project() {
 
     // Init LCD display.
     LCD_init();
+
+    // Init buttons.
+    buttons_init();
+
+    // Init LED.
+    LED_init();
 }
 
 int main() {
@@ -46,6 +54,8 @@ int main() {
 
     LCD_print_line(0, "Race Control");
     LCD_print_line(1, "BTN1 to start!");
+
+    LED_set_color(LedColor::YELLOW);
 
     while (true) {
     }
