@@ -15,6 +15,10 @@ DHT11Status DHT11_read(uint8_t* temperature, uint8_t* humidity) {
     // Sanity check on parameters.
     if (!temperature || !humidity) return DHT11Status::INVALID_POINTER;
 
+    // Re-enable internal pull-up before each read.
+    DHT11_DDR &= ~(1 << DHT11_PIN);
+    DHT11_PORT |= (1 << DHT11_PIN);
+
     // Read data from sensor.
     int err = dht11.read(temperature, humidity, NULL);
 

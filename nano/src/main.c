@@ -16,7 +16,7 @@
  */
 #define F_CPU 16000000UL
 
-#define CAR_ID 1
+#define CAR_ID 2
 
 #include <avr/io.h>
 #include <stdbool.h>

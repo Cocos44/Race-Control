@@ -18,7 +18,8 @@
 enum class DHT11Status { OK, INVALID_POINTER, READ_FAILED };
 
 /**
- * @brief Inits DHT11 port and enables internal pull-up resistor.
+ * @brief Inits DHT11, makes the pin input and enables internal pull-up
+ * resistor.
  */
 void DHT11_init(void);
 
