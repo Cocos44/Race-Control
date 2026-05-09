@@ -26,29 +26,6 @@ int main() {
     init_project();
 
     while (true) {
-        byte temperature = 0;
-        byte humidity = 0;
-
-        DHT11Status dht11_status = DHT11_read(&temperature, &humidity);
-
-        switch (dht11_status) {
-            case DHT11Status::OK:
-                snprintf(dht11_message, sizeof(dht11_message),
-                         "Temperature: %d\r\nHumidity: %d\r\n", temperature,
-                         humidity);
-                USART0_print(dht11_message);
-                break;
-            case DHT11Status::INVALID_POINTER:
-                USART0_print(
-                    "DHT11 READ FAILED: received invalid pointer as "
-                    "parameter!\r\n");
-                break;
-            case DHT11Status::READ_FAILED:
-                USART0_print("DHT11 READ FAILED: sensor failed to read!\r\n");
-                break;
-        }
-
-        _delay_ms(3000);
     }
 
     return 0;
