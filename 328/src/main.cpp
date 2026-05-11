@@ -1,28 +1,18 @@
-#include <avr/interrupt.h>
-#include <avr/io.h>
-#include <util/delay.h>
+#include "main.h"
 
-#include "Arduino.h"
-#include "buttons.h"
-#include "dht11.h"
-#include "hx1838.h"
-#include "lcd_display.h"
 #include "led.h"
-#include "usart.h"
-
-#define DHT11_MAX_MESSAGE_LEN 64
 
 // Global variables.
 char dht11_message[DHT11_MAX_MESSAGE_LEN];
 
-/**
- * @brief Initializes all dependencies and sensors.
- * This includes:
- *     - Arduino Framework: Used by some of the sensors.
- *     - USART: Used to output status and possible errors to PC display.
- *     - DHT11: Temperature and humidity sensor.
- *     - HX1838: IR sensor used to detect passing and identification of cars.
- */
+char lcd_line[LCD_LINE_LEN];
+
+RaceState race_state = RaceState::WAITING_START;
+LCDScreenState lcd_screen_state = LCDScreenState::LAP_TIMES;
+
+uint32_t car_1_lap_time = 0;
+uint32_t car_2_lap_time = 0;
+
 void init_project() {
     // Init Arduino for components using it.
     init();
@@ -40,25 +30,129 @@ void init_project() {
     LCD_init();
 
     // Init buttons.
-    buttons_init();
+    BUTTONS_init();
 
     // Init LED.
     LED_init();
+
+    UPTIME_init();
+
+    USART0_print("Initialization complete......\r\n");
+    USART0_print("Starting race control system......\r\n");
+
+    // Print start phase.
+    LCD_print_line(0, "Race Control");
+    LCD_print_line(1, "BTN2 to start!");
+
+    LED_set_color(LedColor::YELLOW);
+
+    // Enable interrupts;
+    sei();
+}
+
+void display_start_countdown(void) {
+    race_state = RaceState::COUNTDOWN;
+
+    LCD_clear();
+
+    LCD_print_line(0, "3..");
+    LCD_print_line(1, "");
+    _delay_ms(1000);
+
+    LCD_print_line(0, "3...2...");
+    LCD_print_line(1, "");
+    _delay_ms(1000);
+
+    LCD_print_line(0, "3...2...1...");
+    LCD_print_line(1, "");
+    _delay_ms(1000);
+
+    LCD_clear();
+    LCD_print_line(0, "START");
+    LCD_print_line(1, "");
+    _delay_ms(2000);
+
+    LCD_clear();
+}
+
+void display_lap_times(void) {
+    snprintf(lcd_line, sizeof(lcd_line), "C1: %lu.%03lus",
+             car_1_lap_time / 1000, car_1_lap_time % 1000);
+    LCD_print_line(0, lcd_line);
+
+    snprintf(lcd_line, sizeof(lcd_line), "C2: %lu.%03lus",
+             car_2_lap_time / 1000, car_2_lap_time % 1000);
+    LCD_print_line(1, lcd_line);
+}
+
+void update_lcd_screen(void) {
+    switch (lcd_screen_state) {
+        case LCDScreenState::LAP_TIMES:
+            display_lap_times();
+            break;
+
+        case LCDScreenState::TRACK_INFO:
+            /*
+             * TODO:
+             * Display temperature and humidity.
+             */
+            display_lap_times();
+            break;
+    }
 }
 
 int main() {
     init_project();
 
-    USART0_print("Initialization complete......\r\n");
-    USART0_print("Starting race control system......\r\n");
-
-    LCD_print_line(0, "Race Control");
-    LCD_print_line(1, "BTN1 to start!");
-
-    LED_set_color(LedColor::YELLOW);
-
     while (true) {
+        if (BUTTONS_button_1_pressed()) {
+            USART0_print("Button 1 was pressed!\r\n");
+        }
+
+        if (BUTTONS_button_2_pressed()) {
+            USART0_print("Button 2 was pressed!\r\n");
+            if (race_state == RaceState::WAITING_START) {
+                display_start_countdown();
+
+                UPTIME_reset();
+
+                car_1_lap_time = 0;
+                car_2_lap_time = 0;
+
+                race_state = RaceState::RUNNING;
+                lcd_screen_state = LCDScreenState::LAP_TIMES;
+
+                LED_set_color(LedColor::GREEN);
+
+                update_lcd_screen();
+            } else {
+                LedColor current_led_color = LED_get_current_color();
+
+                switch (current_led_color) {
+                    case LedColor::GREEN:
+                        LED_set_color(LedColor::YELLOW);
+                        break;
+                    case LedColor::YELLOW:
+                        LED_set_color(LedColor::GREEN);
+                        break;
+                    default:
+                        LED_set_color(LedColor::GREEN);
+                        break;
+                }
+            }
+        }
+
+        if (race_state == RaceState::RUNNING) {
+            uint32_t now = UPTIME_get_ms();
+
+            car_1_lap_time = now;
+            car_2_lap_time = now;
+
+            update_lcd_screen();
+        }
     }
+
+    cli();
 
     return 0;
 }
