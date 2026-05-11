@@ -1,7 +1,5 @@
 #include "main.h"
 
-#include "led.h"
-
 // Global variables.
 char dht11_message[DHT11_MAX_MESSAGE_LEN];
 
@@ -12,6 +10,9 @@ LCDScreenState lcd_screen_state = LCDScreenState::LAP_TIMES;
 
 uint32_t car_1_lap_time = 0;
 uint32_t car_2_lap_time = 0;
+
+uint8_t temperature = 0;
+uint8_t humidity = 0;
 
 void init_project() {
     // Init Arduino for components using it.
@@ -76,12 +77,24 @@ void display_start_countdown(void) {
 }
 
 void display_lap_times(void) {
-    snprintf(lcd_line, sizeof(lcd_line), "C1: %lu.%03lus",
+    // Display first car lap times on first line.
+    snprintf(lcd_line, sizeof(lcd_line), "Car 1: %lu.%03lus",
              car_1_lap_time / 1000, car_1_lap_time % 1000);
     LCD_print_line(0, lcd_line);
 
-    snprintf(lcd_line, sizeof(lcd_line), "C2: %lu.%03lus",
+    // Display second car lap times on second line.
+    snprintf(lcd_line, sizeof(lcd_line), "Car 2: %lu.%03lus",
              car_2_lap_time / 1000, car_2_lap_time % 1000);
+    LCD_print_line(1, lcd_line);
+}
+
+void display_track_info(void) {
+    // Display temperature on first line.
+    snprintf(lcd_line, sizeof(lcd_line), "Temperature: %d", temperature);
+    LCD_print_line(0, lcd_line);
+
+    // Display humidity on second line.
+    snprintf(lcd_line, sizeof(lcd_line), "Humidity: %d", humidity);
     LCD_print_line(1, lcd_line);
 }
 
@@ -92,11 +105,7 @@ void update_lcd_screen(void) {
             break;
 
         case LCDScreenState::TRACK_INFO:
-            /*
-             * TODO:
-             * Display temperature and humidity.
-             */
-            display_lap_times();
+            display_track_info();
             break;
     }
 }
@@ -104,9 +113,23 @@ void update_lcd_screen(void) {
 int main() {
     init_project();
 
+    uint32_t dht11_last_measurement = UPTIME_get_ms();
+
     while (true) {
         if (BUTTONS_button_1_pressed()) {
             USART0_print("Button 1 was pressed!\r\n");
+
+            switch (lcd_screen_state) {
+                case LCDScreenState::LAP_TIMES:
+                    lcd_screen_state = LCDScreenState::TRACK_INFO;
+                    break;
+                case LCDScreenState::TRACK_INFO:
+                    lcd_screen_state = LCDScreenState::LAP_TIMES;
+                    break;
+                default:
+                    lcd_screen_state = LCDScreenState::LAP_TIMES;
+                    break;
+            }
         }
 
         if (BUTTONS_button_2_pressed()) {
@@ -144,6 +167,11 @@ int main() {
 
         if (race_state == RaceState::RUNNING) {
             uint32_t now = UPTIME_get_ms();
+
+            if (now - dht11_last_measurement >= 2000) {
+                DHT11_read(&temperature, &humidity);
+                dht11_last_measurement = now;
+            }
 
             car_1_lap_time = now;
             car_2_lap_time = now;

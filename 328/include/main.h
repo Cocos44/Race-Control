@@ -57,6 +57,11 @@ void display_start_countdown(void);
 void display_lap_times(void);
 
 /**
+ * @brief Displays track information (temperature and humidity).
+ */
+void display_track_info(void);
+
+/**
  * @brief Updates LCD based on current LCD screen state.
  */
 void update_lcd_screen(void);

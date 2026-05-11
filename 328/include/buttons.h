@@ -5,7 +5,6 @@
 
 #include <avr/interrupt.h>
 #include <avr/io.h>
-#include <util/delay.h>
 
 #define BUTTONS_DDR DDRD
 #define BUTTONS_PORT PORTD
