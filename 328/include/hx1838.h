@@ -3,6 +3,18 @@
 
 #pragma once
 
+#define HX1838_NO_CAR 0
+
+#define HX1838_CAR_1_ID 1
+#define HX1838_CAR_2_ID 2
+
+#define HX1838_CAR_1_MIN_US 650
+#define HX1838_CAR_1_MAX_US 1450
+
+#define HX1838_CAR_2_MIN_US 1600
+#define HX1838_CAR_2_MAX_US 2400
+
+#include <avr/interrupt.h>
 #include <avr/io.h>
 
 #define HX1838_DDR DDRD
@@ -14,5 +26,21 @@
  * resistor.
  */
 void HX1838_init(void);
+
+/**
+ * @brief Checks if a new pulse was measured.
+ *
+ * @return true if a new pulse is available, false otherwise.
+ */
+bool HX1838_pulse_available(void);
+
+/**
+ * @brief Gets last measured pulse duration in microseconds.
+ *
+ * @return Pulse duration in microseconds.
+ */
+uint16_t HX1838_get_last_pulse_us(void);
+
+uint8_t HX1838_get_detected_car_id(void);
 
 #endif  // HX1838_SENSOR_H_

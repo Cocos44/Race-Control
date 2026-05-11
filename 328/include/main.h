@@ -18,6 +18,7 @@
 
 #define DHT11_MAX_MESSAGE_LEN 64
 #define LCD_LINE_LEN 17
+#define CAR_DETECTION_DEBOUNCE 2000
 
 /**
  * @brief Enum specifying race state.

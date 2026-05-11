@@ -1,8 +1,9 @@
 #include "main.h"
 
+#include "usart.h"
+
 // Global variables.
 char dht11_message[DHT11_MAX_MESSAGE_LEN];
-
 char lcd_line[LCD_LINE_LEN];
 
 RaceState race_state = RaceState::WAITING_START;
@@ -13,6 +14,11 @@ uint32_t car_2_lap_time = 0;
 
 uint8_t temperature = 0;
 uint8_t humidity = 0;
+
+uint32_t last_pass_car_1 = 0;
+uint32_t last_pass_car_2 = 0;
+
+uint32_t last_pass_detected = 0;
 
 void init_project() {
     // Init Arduino for components using it.
@@ -173,8 +179,28 @@ int main() {
                 dht11_last_measurement = now;
             }
 
-            car_1_lap_time = now;
-            car_2_lap_time = now;
+            if (HX1838_pulse_available()) {
+                if (now - last_pass_detected > CAR_DETECTION_DEBOUNCE) {
+                    last_pass_detected = now;
+
+                    uint8_t car_id = HX1838_get_detected_car_id();
+
+                    if (car_id == HX1838_CAR_1_ID) {
+                        last_pass_car_1 = now;
+
+                        USART0_print("Car with ID 1 detected!\r\n");
+                    }
+
+                    if (car_id == HX1838_CAR_2_ID) {
+                        last_pass_car_2 = now;
+
+                        USART0_print("Car with ID 2 detected!\r\n");
+                    }
+                }
+            }
+
+            car_1_lap_time = now - last_pass_car_1;
+            car_2_lap_time = now - last_pass_car_2;
 
             update_lcd_screen();
         }
