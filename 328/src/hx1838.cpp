@@ -10,9 +10,13 @@
 
 #include <hx1838.h>
 
+// Check if car passed start/finish.
 static volatile bool pulse_available = false;
+//
+// Number of ticks from IR LED of passing car.
 static volatile uint16_t last_pulse_us = 0;
 
+// ID of car that last passed.
 static volatile uint8_t detected_car_id = HX1838_NO_CAR;
 
 /**

@@ -132,6 +132,8 @@ int main() {
     uint32_t dht11_last_measurement = UPTIME_get_ms();
 
     while (true) {
+        // Handles BUTTON 1 press logic.
+        // Changes LED screen information.
         if (BUTTONS_button_1_pressed()) {
             USART0_print("Button 1 was pressed!\r\n");
 
@@ -148,6 +150,8 @@ int main() {
             }
         }
 
+        // Handles BUTTON 2 press logic.
+        // Starts race or changes LED color.
         if (BUTTONS_button_2_pressed()) {
             USART0_print("Button 2 was pressed!\r\n");
             if (race_state == RaceState::WAITING_START) {
@@ -181,6 +185,10 @@ int main() {
             }
         }
 
+        // Main race logic.
+        // Checks if DHT11 last reading passed 2 seconds (DHT11 needs a bit of
+        // time between readings).
+        // Checks if car passes. If true, identify car and reset lap time.
         if (race_state == RaceState::RUNNING) {
             uint32_t now = UPTIME_get_ms();
 
@@ -216,6 +224,7 @@ int main() {
         }
     }
 
+    // Stop intrerrupts.
     cli();
 
     return 0;
