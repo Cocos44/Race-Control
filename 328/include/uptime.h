@@ -1,3 +1,11 @@
+/**
+ * @file uptime.h
+ * @brief Timer2 millisecond uptime counter interface.
+ *
+ * This file exposes functions used to initialize, read and reset the global
+ * millisecond uptime counter.
+ */
+
 #ifndef UPTIME_H_
 #define UPTIME_H_
 

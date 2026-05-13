@@ -1,3 +1,12 @@
+/**
+ * @file lcd_display.cpp
+ * @brief 16x2 I2C LCD display implementation.
+ *
+ * This file implements basic LCD display functions such as initialization,
+ * clearing the display, controlling the backlight, setting the cursor and
+ * printing text. The implementation uses the LiquidCrystal_I2C library.
+ */
+
 #include "lcd_display.h"
 
 // Visible only in this file.

@@ -153,3 +153,21 @@ The serial monitor is useful for checking:
 - DHT11 values
 - measured IR pulse durations
 - detected car ID
+
+## Code Documentation
+
+The project uses Doxygen to generate source code documentation from
+the comments written in the source and header files.
+
+To generate the documentation locally for the main controller firmware:
+
+```bash
+cd 328
+doxygen Doxyfile
+```
+
+To view the documentation, go to the root of the project and run:
+
+```bash
+firefox docs/index.html
+```

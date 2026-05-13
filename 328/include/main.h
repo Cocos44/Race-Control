@@ -1,3 +1,11 @@
+/**
+ * @file main.h
+ * @brief Main application definitions and function declarations.
+ *
+ * This file contains the main race state definitions, LCD screen state
+ * definitions and function declarations used by the main race control logic.
+ */
+
 #ifndef MAIN_H_
 #define MAIN_H_
 

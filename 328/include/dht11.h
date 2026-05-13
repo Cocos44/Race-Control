@@ -1,3 +1,11 @@
+/**
+ * @file dht11.h
+ * @brief DHT11 temperature and humidity sensor interface.
+ *
+ * This file defines the DHT11 pin mapping, read status values and public
+ * functions used to initialize and read the temperature and humidity sensor.
+ */
+
 #ifndef DHT11_SENSOR_H_
 #define DHT11_SENSOR_H_
 

@@ -1,10 +1,16 @@
+/**
+ * @file usart.cpp
+ * @brief USART0 implementation.
+ *
+ * This file implements basic USART0 functionality used for serial debugging.
+ * It provides functions for initializing USART0, transmitting characters,
+ * receiving characters and printing null-terminated strings.
+ */
+
 #include "usart.h"
 
 #include <avr/io.h>
 
-/*
- * Functie de initializare a controllerului USART
- */
 void USART0_init(unsigned int ubrr) {
     /* seteaza baud rate-ul */
     UBRR0H = (unsigned char)(ubrr >> 8);
@@ -18,11 +24,6 @@ void USART0_init(unsigned int ubrr) {
     UCSR0C = (1 << USBS0) | (3 << UCSZ00);
 }
 
-/*
- * Functie ce transmite un caracter prin USART
- *
- * @param data - caracterul de transmis
- */
 void USART0_transmit(char data) {
     /* asteapta pana bufferul e gol */
     while (!(UCSR0A & (1 << UDRE0)));
@@ -31,11 +32,6 @@ void USART0_transmit(char data) {
     UDR0 = data;
 }
 
-/*
- * Functie ce primeste un caracter prin USART
- *
- * @return - caracterul primit
- */
 char USART0_receive() {
     /* asteapta cat timp bufferul e gol */
     while (!(UCSR0A & (1 << RXC0)));
@@ -44,11 +40,6 @@ char USART0_receive() {
     return UDR0;
 }
 
-/*
- * Functie ce transmite un sir de caractere prin USART
- *
- * @param data - sirul (terminat cu '\0') de transmis
- */
 void USART0_print(const char* data) {
     while (*data != '\0') USART0_transmit(*data++);
 }

@@ -1,3 +1,11 @@
+/**
+ * @file buttons.h
+ * @brief Button handling interface.
+ *
+ * This file defines the button pin mapping and exposes functions used to
+ * initialize the buttons and consume button press events.
+ */
+
 #ifndef BUTTONS_H_
 #define BUTTONS_H_
 

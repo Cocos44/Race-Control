@@ -1,3 +1,11 @@
+/**
+ * @file led.cpp
+ * @brief RGB LED flag system implementation.
+ *
+ * This file implements the RGB LED control logic used to represent race flag
+ * states.
+ */
+
 #include "led.h"
 
 // Visible only in this file.

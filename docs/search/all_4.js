@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['humidity_0',['humidity',['../main_8cpp.html#a3cb62182097ceb535c2f31919c98a0b6',1,'main.cpp']]],
+  ['hx1838_2ecpp_1',['hx1838.cpp',['../hx1838_8cpp.html',1,'']]],
+  ['hx1838_2eh_2',['hx1838.h',['../hx1838_8h.html',1,'']]],
+  ['hx1838_5fcar_5f1_5fid_3',['HX1838_CAR_1_ID',['../hx1838_8h.html#a40efe00622b7695040d4a55f37bbd166',1,'hx1838.h']]],
+  ['hx1838_5fcar_5f1_5fmax_5fus_4',['HX1838_CAR_1_MAX_US',['../hx1838_8h.html#a35c9bac120e7fc7e792782fd84ca4e5f',1,'hx1838.h']]],
+  ['hx1838_5fcar_5f1_5fmin_5fus_5',['HX1838_CAR_1_MIN_US',['../hx1838_8h.html#adad319af6e7677be9cb0849996765dd3',1,'hx1838.h']]],
+  ['hx1838_5fcar_5f2_5fid_6',['HX1838_CAR_2_ID',['../hx1838_8h.html#add7e08e53cc998538780c73c38e604b8',1,'hx1838.h']]],
+  ['hx1838_5fcar_5f2_5fmax_5fus_7',['HX1838_CAR_2_MAX_US',['../hx1838_8h.html#a53fc422bcea20701be5eb329069e400a',1,'hx1838.h']]],
+  ['hx1838_5fcar_5f2_5fmin_5fus_8',['HX1838_CAR_2_MIN_US',['../hx1838_8h.html#a35f01a3fbad92a1efa590e112cb7c1e4',1,'hx1838.h']]],
+  ['hx1838_5fclassify_5fpulse_9',['HX1838_classify_pulse',['../hx1838_8cpp.html#a0c1180740f27dd84db7fe3dd592e7c35',1,'hx1838.cpp']]],
+  ['hx1838_5fddr_10',['HX1838_DDR',['../hx1838_8h.html#af0dee79efcbb9a14dc07b4d028f82e3b',1,'hx1838.h']]],
+  ['hx1838_5fget_5fdetected_5fcar_5fid_11',['hx1838_get_detected_car_id',['../hx1838_8h.html#a3984b06d8c4679d092ee7d794594902d',1,'HX1838_get_detected_car_id(void):&#160;hx1838.cpp'],['../hx1838_8cpp.html#a3984b06d8c4679d092ee7d794594902d',1,'HX1838_get_detected_car_id(void):&#160;hx1838.cpp']]],
+  ['hx1838_5fget_5flast_5fpulse_5fus_12',['hx1838_get_last_pulse_us',['../hx1838_8cpp.html#a967e7661dc09c3a156f0a4526f78b2bb',1,'HX1838_get_last_pulse_us(void):&#160;hx1838.cpp'],['../hx1838_8h.html#a967e7661dc09c3a156f0a4526f78b2bb',1,'HX1838_get_last_pulse_us(void):&#160;hx1838.cpp']]],
+  ['hx1838_5finit_13',['hx1838_init',['../hx1838_8cpp.html#a5e08aa44ac97f6cf357c83d6cacc98b1',1,'HX1838_init(void):&#160;hx1838.cpp'],['../hx1838_8h.html#a5e08aa44ac97f6cf357c83d6cacc98b1',1,'HX1838_init(void):&#160;hx1838.cpp']]],
+  ['hx1838_5fint0_5finit_14',['HX1838_int0_init',['../hx1838_8cpp.html#a7252c524241e1183e78f9dd055b19351',1,'hx1838.cpp']]],
+  ['hx1838_5fno_5fcar_15',['HX1838_NO_CAR',['../hx1838_8h.html#a78ff58f4370b15ddd0dfc8b05301f563',1,'hx1838.h']]],
+  ['hx1838_5fpin_16',['HX1838_PIN',['../hx1838_8h.html#abbd1811ace8d1953f6d316023d93b3bc',1,'hx1838.h']]],
+  ['hx1838_5fport_17',['HX1838_PORT',['../hx1838_8h.html#a7f76b7b0aaaf43b95cff39f98dc1458e',1,'hx1838.h']]],
+  ['hx1838_5fpulse_5favailable_18',['hx1838_pulse_available',['../hx1838_8cpp.html#a581b051ee8a9ecad773c62b7d9ae7bf9',1,'HX1838_pulse_available(void):&#160;hx1838.cpp'],['../hx1838_8h.html#a581b051ee8a9ecad773c62b7d9ae7bf9',1,'HX1838_pulse_available(void):&#160;hx1838.cpp']]],
+  ['hx1838_5ftimer1_5finit_19',['HX1838_timer1_init',['../hx1838_8cpp.html#a83cf896bbffa94cb71002cd9ddb057ac',1,'hx1838.cpp']]]
+];

@@ -1,3 +1,12 @@
+/**
+ * @file hx1838.h
+ * @brief HX1838 infrared receiver interface.
+ *
+ * This file defines the HX1838 pin mapping, car ID constants, detection
+ * thresholds and public functions used for infrared pulse measurement and
+ * car identification.
+ */
+
 #ifndef HX1838_SENSOR_H_
 #define HX1838_SENSOR_H_
 

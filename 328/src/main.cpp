@@ -1,3 +1,13 @@
+/**
+ * @file main.cpp
+ * @brief Main race control application logic.
+ *
+ * This file contains the main application flow for the race control system.
+ * It initializes all hardware modules, manages the race state, handles the
+ * countdown sequence, updates the LCD display and coordinates the interaction
+ * between buttons, sensors, LEDs and car detection.
+ */
+
 #include "main.h"
 
 #include "usart.h"

@@ -1,3 +1,11 @@
+/**
+ * @file lcd_display.h
+ * @brief 16x2 I2C LCD display interface.
+ *
+ * This file defines LCD configuration constants and exposes basic LCD display
+ * functions used by the race control system.
+ */
+
 #ifndef LCD_DISPLAY_H_
 #define LCD_DISPLAY_H_
 

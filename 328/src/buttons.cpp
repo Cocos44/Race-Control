@@ -1,3 +1,12 @@
+/**
+ * @file buttons.cpp
+ * @brief Button handling implementation using Pin Change Interrupts.
+ *
+ * This file implements button detection for BUTTON_1 and BUTTON_2. The buttons
+ * are connected to PD5 and PD6 and use internal pull-up resistors. Pin Change
+ * Interrupts are used to detect button press events.
+ */
+
 #include <buttons.h>
 
 // Visible only in this file.

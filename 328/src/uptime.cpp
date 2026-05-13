@@ -1,3 +1,11 @@
+/**
+ * @file uptime.cpp
+ * @brief Timer2 millisecond uptime counter implementation.
+ *
+ * This file implements a millisecond uptime counter using Timer2 in CTC mode.
+ * The counter is used for race timing, periodic sensor reads and timing logic.
+ */
+
 #include "uptime.h"
 
 #include <avr/interrupt.h>

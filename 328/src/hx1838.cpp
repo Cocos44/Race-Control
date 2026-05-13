@@ -1,3 +1,13 @@
+/**
+ * @file hx1838.cpp
+ * @brief HX1838 infrared receiver implementation.
+ *
+ * This file implements the infrared receiver logic used for car detection.
+ * The HX1838 receiver is connected to PD2 / INT0. INT0 detects pulse edges,
+ * while Timer1 measures pulse duration in order to identify the car that
+ * emitted the IR burst.
+ */
+
 #include <hx1838.h>
 
 static volatile bool pulse_available = false;

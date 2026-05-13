@@ -1,3 +1,11 @@
+/**
+ * @file led.h
+ * @brief RGB LED flag system interface.
+ *
+ * This file defines the RGB LED pin mapping, available LED colors and public
+ * functions used to control the flag LED.
+ */
+
 #ifndef RGB_LED_H_
 #define RGB_LED_H_
 

@@ -1,3 +1,12 @@
+/**
+ * @file dht11.cpp
+ * @brief DHT11 temperature and humidity sensor implementation.
+ *
+ * This file implements the DHT11 sensor wrapper used by the race control
+ * system. The sensor is connected to PD4 and is read using the SimpleDHT
+ * library.
+ */
+
 #include "dht11.h"
 
 // Visible only in this file.
