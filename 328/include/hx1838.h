@@ -50,6 +50,11 @@ bool HX1838_pulse_available(void);
  */
 uint16_t HX1838_get_last_pulse_us(void);
 
+/**
+ * @brief Gets the car ID based on it's pulse duration in microseconds.
+ *
+ * @returns ID of car.
+ */
 uint8_t HX1838_get_detected_car_id(void);
 
 #endif  // HX1838_SENSOR_H_

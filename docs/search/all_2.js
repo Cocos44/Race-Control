@@ -13,8 +13,9 @@ var searchData=
   ['dht11_5fport_10',['DHT11_PORT',['../dht11_8h.html#aebeb55e992ef02dd2d39a225e276585e',1,'dht11.h']]],
   ['dht11_5fread_11',['dht11_read',['../dht11_8cpp.html#a15dc5f6c16db0e04d54786c8b30b2b87',1,'DHT11_read(uint8_t *temperature, uint8_t *humidity):&#160;dht11.cpp'],['../dht11_8h.html#a15dc5f6c16db0e04d54786c8b30b2b87',1,'DHT11_read(uint8_t *temperature, uint8_t *humidity):&#160;dht11.cpp']]],
   ['dht11status_12',['DHT11Status',['../dht11_8h.html#a2b833ae9a481b1ebe45f1d58de0e7a65',1,'dht11.h']]],
-  ['display_5flap_5ftimes_13',['display_lap_times',['../main_8cpp.html#a904c17e5cccf6a683d68785ad095a31e',1,'display_lap_times(void):&#160;main.cpp'],['../main_8h.html#a904c17e5cccf6a683d68785ad095a31e',1,'display_lap_times(void):&#160;main.cpp']]],
-  ['display_5fstart_5fcountdown_14',['display_start_countdown',['../main_8cpp.html#a8e731564220b06222c9d2f1a06d413cd',1,'display_start_countdown(void):&#160;main.cpp'],['../main_8h.html#a8e731564220b06222c9d2f1a06d413cd',1,'display_start_countdown(void):&#160;main.cpp']]],
-  ['display_5ftrack_5finfo_15',['display_track_info',['../main_8cpp.html#a729932bb9e7970bae3656c1674f38c07',1,'display_track_info(void):&#160;main.cpp'],['../main_8h.html#a729932bb9e7970bae3656c1674f38c07',1,'display_track_info(void):&#160;main.cpp']]],
-  ['docs_5fmain_2emd_16',['docs_main.md',['../docs__main_8md.html',1,'']]]
+  ['display_5fbest_5flap_5ftime_13',['display_best_lap_time',['../main_8cpp.html#a9cfbc824e8d8f1d9b6f97a874127a8e0',1,'display_best_lap_time(void):&#160;main.cpp'],['../main_8h.html#a9cfbc824e8d8f1d9b6f97a874127a8e0',1,'display_best_lap_time(void):&#160;main.cpp']]],
+  ['display_5flap_5ftimes_14',['display_lap_times',['../main_8cpp.html#a904c17e5cccf6a683d68785ad095a31e',1,'display_lap_times(void):&#160;main.cpp'],['../main_8h.html#a904c17e5cccf6a683d68785ad095a31e',1,'display_lap_times(void):&#160;main.cpp']]],
+  ['display_5fstart_5fcountdown_15',['display_start_countdown',['../main_8cpp.html#a8e731564220b06222c9d2f1a06d413cd',1,'display_start_countdown(void):&#160;main.cpp'],['../main_8h.html#a8e731564220b06222c9d2f1a06d413cd',1,'display_start_countdown(void):&#160;main.cpp']]],
+  ['display_5ftrack_5finfo_16',['display_track_info',['../main_8cpp.html#a729932bb9e7970bae3656c1674f38c07',1,'display_track_info(void):&#160;main.cpp'],['../main_8h.html#a729932bb9e7970bae3656c1674f38c07',1,'display_track_info(void):&#160;main.cpp']]],
+  ['docs_5fmain_2emd_17',['docs_main.md',['../docs__main_8md.html',1,'']]]
 ];

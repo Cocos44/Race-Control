@@ -85,6 +85,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;avr/interrupt.h&gt;</code><br />
 <code>#include &lt;avr/io.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;util/delay.h&gt;</code><br />
 <code>#include &quot;Arduino.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="buttons_8h_source.html">buttons.h</a>&quot;</code><br />
@@ -105,6 +106,8 @@ Macros</h2></td></tr>
 <tr class="separator:ae0f1d86f90717d4460e471124b9b2d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b7aeeeb5a4df0e5be4ca1d6a1292e14" id="r_a8b7aeeeb5a4df0e5be4ca1d6a1292e14"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a8b7aeeeb5a4df0e5be4ca1d6a1292e14">CAR_DETECTION_DEBOUNCE</a>&#160;&#160;&#160;2000</td></tr>
 <tr class="separator:a8b7aeeeb5a4df0e5be4ca1d6a1292e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0168d0aabe9fad2e532c8c93d67698e" id="r_af0168d0aabe9fad2e532c8c93d67698e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#af0168d0aabe9fad2e532c8c93d67698e">LAP_TIME_INIT_VALUE</a>&#160;&#160;&#160;(0xffffffff)</td></tr>
+<tr class="separator:af0168d0aabe9fad2e532c8c93d67698e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -116,6 +119,7 @@ Enumerations</h2></td></tr>
 <tr class="separator:a934228cd89323abeac5b1a0a6f4a8484"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7235ca0a23e3725a37c9b16fed05f605" id="r_a7235ca0a23e3725a37c9b16fed05f605"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a7235ca0a23e3725a37c9b16fed05f605">LCDScreenState</a> { <a class="el" href="main_8h.html#a7235ca0a23e3725a37c9b16fed05f605af7785c465108af3814ae19a919e5b310">LAP_TIMES</a>
 , <a class="el" href="main_8h.html#a7235ca0a23e3725a37c9b16fed05f605a7f26a04787a97232351aaf1167e605a2">TRACK_INFO</a>
+, <a class="el" href="main_8h.html#a7235ca0a23e3725a37c9b16fed05f605a6719905bf8cb3f73d9eeefabe9dd1601">BEST_LAP_TIME</a>
  }</td></tr>
 <tr class="memdesc:a7235ca0a23e3725a37c9b16fed05f605"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum specifying what information is currently displayed on LCD.  <a href="main_8h.html#a7235ca0a23e3725a37c9b16fed05f605">More...</a><br /></td></tr>
 <tr class="separator:a7235ca0a23e3725a37c9b16fed05f605"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a729932bb9e7970bae3656c1674f38c07" id="r_a729932bb9e7970bae3656c1674f38c07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a729932bb9e7970bae3656c1674f38c07">display_track_info</a> (void)</td></tr>
 <tr class="memdesc:a729932bb9e7970bae3656c1674f38c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays track information (temperature and humidity).  <br /></td></tr>
 <tr class="separator:a729932bb9e7970bae3656c1674f38c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cfbc824e8d8f1d9b6f97a874127a8e0" id="r_a9cfbc824e8d8f1d9b6f97a874127a8e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#a9cfbc824e8d8f1d9b6f97a874127a8e0">display_best_lap_time</a> (void)</td></tr>
+<tr class="memdesc:a9cfbc824e8d8f1d9b6f97a874127a8e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays best lap time.  <br /></td></tr>
+<tr class="separator:a9cfbc824e8d8f1d9b6f97a874127a8e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf5719d4d309580ed4924098c1f652e3" id="r_acf5719d4d309580ed4924098c1f652e3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8h.html#acf5719d4d309580ed4924098c1f652e3">update_lcd_screen</a> (void)</td></tr>
 <tr class="memdesc:acf5719d4d309580ed4924098c1f652e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates LCD based on current LCD screen state.  <br /></td></tr>
 <tr class="separator:acf5719d4d309580ed4924098c1f652e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,6 +171,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define DHT11_MAX_MESSAGE_LEN&#160;&#160;&#160;64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0168d0aabe9fad2e532c8c93d67698e" name="af0168d0aabe9fad2e532c8c93d67698e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0168d0aabe9fad2e532c8c93d67698e">&#9670;&#160;</a></span>LAP_TIME_INIT_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LAP_TIME_INIT_VALUE&#160;&#160;&#160;(0xffffffff)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -208,11 +229,13 @@ Functions</h2></td></tr>
 <p>Enum specifying what information is currently displayed on LCD. </p>
 <p>Current LCD screens:</p><ul>
 <li>LAP_TIMES: displays lap times for both cars.</li>
-<li>TRACK_INFO: displays track temperature and humidity. </li>
+<li>TRACK_INFO: displays track temperature and humidity.</li>
+<li>BEST_LAP_TIME: displays best lap time done and which car has done it. </li>
 </ul>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a7235ca0a23e3725a37c9b16fed05f605af7785c465108af3814ae19a919e5b310" name="a7235ca0a23e3725a37c9b16fed05f605af7785c465108af3814ae19a919e5b310"></a>LAP_TIMES&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7235ca0a23e3725a37c9b16fed05f605a7f26a04787a97232351aaf1167e605a2" name="a7235ca0a23e3725a37c9b16fed05f605a7f26a04787a97232351aaf1167e605a2"></a>TRACK_INFO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7235ca0a23e3725a37c9b16fed05f605a6719905bf8cb3f73d9eeefabe9dd1601" name="a7235ca0a23e3725a37c9b16fed05f605a6719905bf8cb3f73d9eeefabe9dd1601"></a>BEST_LAP_TIME&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -247,6 +270,26 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a9cfbc824e8d8f1d9b6f97a874127a8e0" name="a9cfbc824e8d8f1d9b6f97a874127a8e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cfbc824e8d8f1d9b6f97a874127a8e0">&#9670;&#160;</a></span>display_best_lap_time()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void display_best_lap_time </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays best lap time. </p>
+
+</div>
+</div>
 <a id="a904c17e5cccf6a683d68785ad095a31e" name="a904c17e5cccf6a683d68785ad095a31e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a904c17e5cccf6a683d68785ad095a31e">&#9670;&#160;</a></span>display_lap_times()</h2>
 
