@@ -10,8 +10,6 @@
 
 #include "main.h"
 
-#include "usart.h"
-
 // Global variables.
 char dht11_message[DHT11_MAX_MESSAGE_LEN];
 char lcd_line[LCD_LINE_LEN];
@@ -21,6 +19,9 @@ LCDScreenState lcd_screen_state = LCDScreenState::LAP_TIMES;
 
 uint32_t car_1_lap_time = 0;
 uint32_t car_2_lap_time = 0;
+
+uint32_t car_1_best_lap_time = LAP_TIME_INIT_VALUE;
+uint32_t car_2_best_lap_time = LAP_TIME_INIT_VALUE;
 
 uint8_t temperature = 0;
 uint8_t humidity = 0;
@@ -114,6 +115,28 @@ void display_track_info(void) {
     LCD_print_line(1, lcd_line);
 }
 
+void display_best_lap_time(void) {
+    LCD_print_line(0, "Best lap time");
+
+    if (car_1_best_lap_time == LAP_TIME_INIT_VALUE &&
+        car_2_best_lap_time == LAP_TIME_INIT_VALUE) {
+        LCD_print_line(1, "No lap yet");
+        return;
+    }
+
+    if (car_1_best_lap_time <= car_2_best_lap_time) {
+        snprintf(lcd_line, sizeof(lcd_line), "Car 1: %lu.%03lus",
+                 car_1_best_lap_time / 1000, car_1_best_lap_time % 1000);
+        LCD_print_line(1, lcd_line);
+        return;
+    } else {
+        snprintf(lcd_line, sizeof(lcd_line), "Car 2: %lu.%03lus",
+                 car_2_best_lap_time / 1000, car_2_best_lap_time % 1000);
+        LCD_print_line(1, lcd_line);
+        return;
+    }
+}
+
 void update_lcd_screen(void) {
     switch (lcd_screen_state) {
         case LCDScreenState::LAP_TIMES:
@@ -122,6 +145,9 @@ void update_lcd_screen(void) {
 
         case LCDScreenState::TRACK_INFO:
             display_track_info();
+            break;
+        case LCDScreenState::BEST_LAP_TIME:
+            display_best_lap_time();
             break;
     }
 }
@@ -142,6 +168,9 @@ int main() {
                     lcd_screen_state = LCDScreenState::TRACK_INFO;
                     break;
                 case LCDScreenState::TRACK_INFO:
+                    lcd_screen_state = LCDScreenState::BEST_LAP_TIME;
+                    break;
+                case LCDScreenState::BEST_LAP_TIME:
                     lcd_screen_state = LCDScreenState::LAP_TIMES;
                     break;
                 default:
@@ -206,11 +235,17 @@ int main() {
                     if (car_id == HX1838_CAR_1_ID) {
                         last_pass_car_1 = now;
 
+                        if (car_1_lap_time < car_1_best_lap_time)
+                            car_1_best_lap_time = car_1_lap_time;
+
                         USART0_print("Car with ID 1 detected!\r\n");
                     }
 
                     if (car_id == HX1838_CAR_2_ID) {
                         last_pass_car_2 = now;
+
+                        if (car_2_lap_time < car_2_best_lap_time)
+                            car_2_best_lap_time = car_2_lap_time;
 
                         USART0_print("Car with ID 2 detected!\r\n");
                     }

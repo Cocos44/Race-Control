@@ -13,6 +13,7 @@
 
 #include <avr/interrupt.h>
 #include <avr/io.h>
+#include <stdint.h>
 #include <util/delay.h>
 
 #include "Arduino.h"
@@ -27,6 +28,7 @@
 #define DHT11_MAX_MESSAGE_LEN 64
 #define LCD_LINE_LEN 17
 #define CAR_DETECTION_DEBOUNCE 2000
+#define LAP_TIME_INIT_VALUE (0xffffffff)
 
 /**
  * @brief Enum specifying race state.
@@ -39,8 +41,9 @@ enum class RaceState { WAITING_START, COUNTDOWN, RUNNING };
  * Current LCD screens:
  *     - LAP_TIMES: displays lap times for both cars.
  *     - TRACK_INFO: displays track temperature and humidity.
+ *     - BEST_LAP_TIME: displays best lap time done and which car has done it.
  */
-enum class LCDScreenState { LAP_TIMES, TRACK_INFO };
+enum class LCDScreenState { LAP_TIMES, TRACK_INFO, BEST_LAP_TIME };
 
 /**
  * @brief Initializes all dependencies and sensors.
@@ -69,6 +72,11 @@ void display_lap_times(void);
  * @brief Displays track information (temperature and humidity).
  */
 void display_track_info(void);
+
+/**
+ * @brief Displays best lap time.
+ */
+void display_best_lap_time(void);
 
 /**
  * @brief Updates LCD based on current LCD screen state.
